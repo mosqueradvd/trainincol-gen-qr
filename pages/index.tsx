@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import { QRComponent } from "./QRComponent";
 import Spinner from "./Spinner";
 import LoginForm from "../components/LoginForm";
@@ -56,7 +57,7 @@ export default function Home() {
 
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <a
+          <Link
             href="/"
             className="flex items-center mb-10 text-2xl font-semibold text-gray-900 dark:text-white"
           >
@@ -66,7 +67,7 @@ export default function Home() {
               alt="Training Net Colombia"
             />
             Training Net Colombia
-          </a>
+          </Link>
           {isLoading ? (
             <Spinner />
           ) : (
