@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { QRComponent } from "./QRComponent";
+import QRComponent from "./QRComponent";
 import Spinner from "./Spinner";
 import LoginForm from "../components/LoginForm";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-export const QRComponent = ({ qrCode, username, password }) => {
+const QRComponent = ({ qrCode, username, password }) => {
   const handleLogout = async () => {
     const options = {
       method: "POST",
@@ -42,3 +42,5 @@ export const QRComponent = ({ qrCode, username, password }) => {
     </>
   );
 };
+
+export default QRComponent;
