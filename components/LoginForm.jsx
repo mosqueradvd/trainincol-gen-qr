@@ -7,6 +7,7 @@ const LoginForm = ({
   setPassword,
   onSubmit,
   errorMessage,
+  manualCheckIn,
 }) => {
   return (
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -69,6 +70,12 @@ const LoginForm = ({
             className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
           >
             Iniciar sesión
+          </button>
+          <button
+            onClick={() => manualCheckIn(username, password)}
+            className="w-full text-blue-500 bg-blue-100 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Check-in y Check-out Manual
           </button>
         </form>
       </div>

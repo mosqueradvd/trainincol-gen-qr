@@ -32,7 +32,7 @@ const QRComponent = ({ qrCode, username, password }) => {
 
   return (
     <>
-      <Image src={qrCode} alt="QR CODE" />
+      <Image src={qrCode} alt="QR CODE" width={200} height={200} />
       <button
         onClick={handleLogout}
         className="mt-10 w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

@@ -5,6 +5,7 @@ import Image from "next/image";
 import QRComponent from "./QRComponent";
 import Spinner from "./Spinner";
 import LoginForm from "../components/LoginForm";
+import Swal from "sweetalert2";
 
 export default function Home() {
   const [username, setUsername]: any = useState("");
@@ -47,6 +48,38 @@ export default function Home() {
     setIsLoading(false);
   };
 
+  const manualCheckIn = async (username: any, password: any) => {
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ username: username, password: password }),
+    };
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwgUztsYgTp8TzUUIE68rh2411PGqxyGma6UJVEdwfUWZ1lU3lgjjzgcYrie11c34aC/exec?op=manualCheckIn&username=" +
+          username +
+          "&password=" +
+          password,
+        options
+      );
+      const data = await response.json();
+      if (!data.success) {
+        setErrorMessage("Usuario o contraseña incorrectos");
+      } else {
+        setErrorMessage("");
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMessage("Ocurrió un error");
+    }
+
+    setIsLoading(false);
+    Swal.fire("¡Registrado!", "", "success");
+  };
+
   return (
     <>
       <Head>
@@ -56,7 +89,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-gray-900 h-full">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <Link
             href="/"
@@ -66,6 +99,8 @@ export default function Home() {
               className="w-8 h-8 mr-2"
               src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
               alt="Training Net Colombia"
+              width={4}
+              height={4}
             />
             Training Net Colombia
           </Link>
@@ -88,6 +123,7 @@ export default function Home() {
                   setPassword={setPassword}
                   onSubmit={(e: any) => getQR(e, username, password)}
                   errorMessage={errorMessage}
+                  manualCheckIn={manualCheckIn}
                 />
               )}
             </div>
