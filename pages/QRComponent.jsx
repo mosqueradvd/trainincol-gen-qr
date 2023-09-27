@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 const QRComponent = ({ qrCode, username, password }) => {
   const handleLogout = async () => {
@@ -19,7 +20,13 @@ const QRComponent = ({ qrCode, username, password }) => {
       );
       const data = await response.json();
       if (data.success) {
-        console.log(data.message);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Salida registrada',
+          showConfirmButton: false,
+          timer: 1500
+        })
       } else {
         console.error(data.message);
       }
@@ -27,12 +34,14 @@ const QRComponent = ({ qrCode, username, password }) => {
       console.error(err);
     }
 
-    window.location.href = "/";
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1500);
   };
 
   return (
     <>
-      <Image src={qrCode} alt="QR CODE" width={200} height={200} />
+      <Image src={qrCode} alt="QR CODE" width={400} height={400} />
       <button
         onClick={handleLogout}
         className="mt-10 w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

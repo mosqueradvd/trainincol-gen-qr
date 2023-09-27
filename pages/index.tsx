@@ -5,7 +5,6 @@ import Image from "next/image";
 import QRComponent from "./QRComponent";
 import Spinner from "./Spinner";
 import LoginForm from "../components/LoginForm";
-import Swal from "sweetalert2";
 
 export default function Home() {
   const [username, setUsername]: any = useState("");
@@ -77,7 +76,6 @@ export default function Home() {
     }
 
     setIsLoading(false);
-    Swal.fire("¡Registrado!", "", "success");
   };
 
   return (
